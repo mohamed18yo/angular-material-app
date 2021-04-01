@@ -1,1 +1,33 @@
-<p>haeder works!</p>
+<mat-toolbar color="warn">
+  <div fxHide.gt-xs>
+    <button
+      mat-icon-button
+      color="primary"
+      type="submit"
+      (click)="onToggle()"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+  <a routerLink="/"> <span>My Application</span></a>
+  <div fxLayout fxFlex fxLayoutAlign="flex-end" fxHide.xs>
+    <ul fxLayout fxLayoutGap="10px" class="li">
+      <a routerLink="login" *ngIf="!isAuth">
+        <li>Login</li>
+      </a>
+      <a *ngIf="!isAuth" routerLink="signup">
+        <li>signup</li>
+      </a>
+      <a *ngIf="isAuth" routerLink="/">
+        <li>Home</li>
+      </a>
+      <a *ngIf="isAuth" routerLink="training">
+        <li>Training</li>
+      </a>
+      <button *ngIf="isAuth" mat-button type="submit" (click)="logout()">
+        <li>Logout</li>
+      </button>
+    </ul>
+  </div>
+</mat-toolbar>
+

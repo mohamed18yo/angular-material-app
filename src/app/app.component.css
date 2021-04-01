@@ -6,24 +6,8 @@
   right: 0;
   background: #eee;
 }
-mat-sidenav-container, mat-sidenav-content, mat-sidenav{
-  height: 100%;
-}
-mat-sidenav{
-  width: 200px;
-}
-ul{
-  list-style: none;
 
-}
-.li{
-   padding: 0px;
-  margin: 0px;
-}
-a{
-text-decoration: none;
-color: black;
-}
+
 /* main{
   padding: 10%;
 } */

@@ -1,1 +1,21 @@
-<p>sidenav-list works!</p>
+<div>
+  <mat-nav-list>
+    <a *ngIf="!isAuth" mat-list-item routerLink="signup" (click)="onToggle()">
+      <mat-icon>account_circle</mat-icon>Signup
+    </a>
+    <a *ngIf="!isAuth" mat-list-item routerLink="login" (click)="onToggle()">
+      <mat-icon>login</mat-icon>Login
+    </a>
+    <a *ngIf="isAuth" mat-list-item routerLink="/" (click)="onToggle()">
+      <mat-icon>home</mat-icon>Home
+    </a>
+    <a *ngIf="isAuth" mat-list-item routerLink="training" (click)="onToggle()">
+      <mat-icon>fitness_center</mat-icon>Training
+    </a>     
+    <mat-list-item>
+      <button *ngIf="isAuth" mat-icon-button type="submit" (click)="logout()" (click)="onToggle()">
+        <mat-icon>logout</mat-icon>Logout
+      </button>
+    </mat-list-item>
+  </mat-nav-list>
+</div>

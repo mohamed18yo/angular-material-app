@@ -1,1 +1,11 @@
-<p>current-training works!</p>
+<section  fxLayout fxLayoutAlign="center">
+  <!-- <div fxLayout="column" fxLayoutAlign="space-around center"  > -->
+  <mat-card fxLayoutGap="20px" fxLayout="column"  fxFlex="400px" fxLayoutAlign="space-around center" >
+    <h2>Current Treaining Page</h2>
+    <mat-progress-spinner [value]="progress" mode="determinate"></mat-progress-spinner>
+    <h1>Progress {{progress}} %</h1>
+    <p>You Can Do It, Keep Going</p>
+    <button mat-raised-button color="warn" (click)="onStop()">Stop!</button>
+  <!-- </div> -->
+    </mat-card>
+</section>

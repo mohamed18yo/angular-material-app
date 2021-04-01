@@ -12,12 +12,16 @@ import { CurrentTrainingComponent } from './training/current-training/current-tr
 import { PastTrainingsComponent } from './training/past-trainings/past-trainings.component';
 import { NewTrainingComponent } from './training/new-training/new-training.component';
 import { MaterialMdule } from './material.module';
-import { HaederComponent } from './haeder/haeder.component';
+
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
+import { HaederComponent } from './navigation/haeder/haeder.component';
+import { AuthService } from './auth/auth.service';
+import { StopTrainingComponent } from './training/current-training/stop-training.component';
+import { TrainingService } from './training/training.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +34,8 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
     NewTrainingComponent,
     HaederComponent,
     SidenavListComponent,
-   
+    StopTrainingComponent
+
   ],
   imports: [
     BrowserModule,
@@ -41,7 +46,8 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [AuthService,TrainingService],
+  bootstrap: [AppComponent],
+  entryComponents:[StopTrainingComponent]
 })
 export class AppModule { }
