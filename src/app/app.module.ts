@@ -22,6 +22,8 @@ import { HaederComponent } from './navigation/haeder/haeder.component';
 import { AuthService } from './auth/auth.service';
 import { StopTrainingComponent } from './training/current-training/stop-training.component';
 import { TrainingService } from './training/training.service';
+import { HttpClientModule } from '@angular/common/http';
+import { FirstpipePipe } from './firstpipe.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +36,8 @@ import { TrainingService } from './training/training.service';
     NewTrainingComponent,
     HaederComponent,
     SidenavListComponent,
-    StopTrainingComponent
+    StopTrainingComponent,
+    FirstpipePipe
 
   ],
   imports: [
@@ -44,6 +47,7 @@ import { TrainingService } from './training/training.service';
     MaterialMdule,
     FlexLayoutModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule
   ],
   providers: [AuthService,TrainingService],

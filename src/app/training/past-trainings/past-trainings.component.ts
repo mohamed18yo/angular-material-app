@@ -25,7 +25,7 @@ export class PastTrainingsComponent implements OnInit, AfterViewInit {
   paginator!: MatPaginator;
   displayedColumns = ['date', 'name', 'duration', 'calories', 'state'];
 
- const dataSource:any
+  dataSource:any
   // { filter: string; paginator: MatPaginator; sort: MatSort; }
   constructor(private trainingService: TrainingService) {}
 
