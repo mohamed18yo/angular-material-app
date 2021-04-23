@@ -1,4 +1,8 @@
-<section fxLayout fxLayoutAlign="center">
+ <div class=" alert-danger" fxLayoutAlign="center"  *ngIf="errorMsg">
+    <p>{{ errorMsg }}</p>
+  </div>
+  <section fxLayout fxLayoutAlign="center">
+
 <mat-card  fxFlex="400px" fxLayoutAlign="center" >
   <form #authForm="ngForm" fxLayout="column"  class="example-form">
     <mat-form-field class="example-full-width">

@@ -8,6 +8,7 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  errorMsg!: any;
   maxDate: any;
   constructor(private authService: AuthService) {}
   isLoading = false;
@@ -21,7 +22,13 @@ export class LoginComponent implements OnInit {
       email: form.value.email,
       password: form.value.password,
     });
-    console.log(form.value);
+    this.authService.getErrorMsg().subscribe((err) => {
+      this.errorMsg = err;
+    });
+    setTimeout(() => {
+      this.errorMsg = null;
+    }, 5000);
+    // console.log(form.value);
   }
   onChangeMode() {}
 }

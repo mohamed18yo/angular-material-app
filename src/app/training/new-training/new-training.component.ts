@@ -31,10 +31,10 @@ export class NewTrainingComponent implements OnInit, OnDestroy {
     this.trainingService.getExercise()
     this.trainingSub= this.trainingService.getAvilExercises().subscribe((data)=>{
       // console.log(data);
-      
+
       this.exercises= data
-    })
-   
+    }) 
+
   }
 
   onStartTraining(form: NgForm) {

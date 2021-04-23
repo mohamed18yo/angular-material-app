@@ -2,7 +2,6 @@ import { Subject } from 'rxjs';
 import { Exercise } from './exercise.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
@@ -19,18 +18,18 @@ export class TrainingService {
 
   private runningExercise!: Exercise | any;
 
-  private exercises: Exercise[] = [];
+  private changeExercises: Exercise[] = [];
   constructor(private http: HttpClient) {}
   getExercise() {
-
-    this.http.get<{exercises:Exercise[]}>('http://localhost:3000/training').subscribe((resData)=>{
-        this.avilExercise.next([...resData.exercises])
-        this.avilableExercises= resData.exercises
-    })
-    
+    this.http
+      .get<{ exercises: Exercise[] }>('http://localhost:3000/training')
+      .subscribe((resData) => {
+        this.avilExercise.next([...resData.exercises]);
+        this.avilableExercises = resData.exercises;
+      });
   }
-  getAvilExercises(){
-    return this.avilExercise.asObservable()
+  getAvilExercises() {
+    return this.avilExercise.asObservable();
   }
   startExercise(exerciseId: string) {
     this.runningExercise = this.avilableExercises.find(
@@ -41,23 +40,38 @@ export class TrainingService {
     // console.log(exerciseId);
   }
   completeExercise() {
-    this.exercises.push({
+    const finishedExercise = {
+      ...this.runningExercise,
+      date: new Date(),
+      state: 'completed',
+    };
+    this.changeExercises.push({
       ...this.runningExercise,
       date: new Date(),
       state: 'completed',
     });
+    this.saveFinishedExercise(finishedExercise);
 
     this.runningExercise = null;
     this.exerciseChange.next();
   }
   cancelExercise(progress: number) {
-    this.exercises.push({
+    const finishedExercise = {
+      ...this.runningExercise,
+      duration: this.runningExercise.duration * (progress / 100),
+      calories: this.runningExercise.calories * (progress / 100),
+      date: new Date(),
+      state: 'cancaled',
+    };
+    this.changeExercises.push({
       ...this.runningExercise,
       duration: this.runningExercise.duration * (progress / 100),
       calories: this.runningExercise.calories * (progress / 100),
       date: new Date(),
       state: 'cancaled',
     });
+
+    this.saveFinishedExercise(finishedExercise);
     // console.log(this.exercises.slice());
 
     this.runningExercise = null;
@@ -67,6 +81,29 @@ export class TrainingService {
     return { ...this.runningExercise };
   }
   getCompleteOrCanceledExercises() {
-    return this.exercises.slice();
+
+    return this.changeExercises.slice();
+  }
+
+  saveFinishedExercise(finishedExercise: Exercise) {
+    // console.log(finishedExercise);
+
+    this.http.post('http://localhost:3000/training', finishedExercise)
+    // .subscribe((res) => {
+    //   // console.log(res);
+    // });
+  }
+
+  fetchCompleteOrCanceledExercises() {
+    this.http
+      .get<{ exercise: Exercise[] }>(
+        'http://localhost:3000/training/finishedExercise'
+      )
+      .subscribe((res) => {
+        // console.log(res);
+       this.changeExercises= res.exercise
+
+        // = res.exercise;
+      });
   }
 }

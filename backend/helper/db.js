@@ -1,12 +1,12 @@
 
 var mongoose= require('mongoose')
 
-mongoose.connect('mongodb://localhost/angular-material')
+mongoose.connect('mongodb://localhost/angular-material',{ useNewUrlParser: true })
 
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   // we're connected!
-  console.log("'we're connected!'"); 
+  console.log("'we're connected!'");
 });

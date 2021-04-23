@@ -9,6 +9,7 @@ import { AuthService } from '../auth.service';
 export class SignupComponent implements OnInit {
   maxDate: any;
   isLoading = false;
+  errorMsg: any;
   // signupForm: FormGroup;
   constructor(private authService: AuthService) {}
 
@@ -24,6 +25,11 @@ export class SignupComponent implements OnInit {
       password: form.value.password,
     });
     // console.log(form.value);
-
+    this.authService.getErrorMsg().subscribe((err) => {
+      this.errorMsg = err;
+    });
+    setTimeout(() => {
+      this.errorMsg = null;
+    }, 5000);
   }
 }
