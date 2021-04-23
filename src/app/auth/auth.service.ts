@@ -4,7 +4,6 @@ import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { AnyMxRecord } from 'node:dns';
 
 @Injectable()
 export class AuthService {
@@ -26,7 +25,7 @@ export class AuthService {
         'http://localhost:3000/users/signup',
         this.user
       )
-      .subscribe((res) => {
+      .subscribe((res) => { 
 
         if (res.user) {
           this.IsAuth = true;
